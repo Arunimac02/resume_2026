@@ -1,0 +1,165 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[left=0.6in,right=0.6in,top=0.28in,bottom=0.28in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% Default LaTeX font (Computer Modern / Latin Modern Roman) is used --
+% no fontspec / custom font packages, so pdflatex renders the classic
+% serif "LaTeX look" shown in the reference image.
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\normalsize}{\fontsize{9.3}{11.1}\selectfont}
+\AtBeginDocument{\normalsize}
+
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+\newcommand{\heading}[4]{%
+  \noindent\textbf{#1} \hfill #2\\
+  \textit{#3} \hfill \textit{#4}\par
+}
+\newcommand{\headingsimple}[2]{%
+  \noindent\textbf{#1} \hfill #2\par
+}
+
+\setlist[itemize]{leftmargin=16pt, itemsep=0pt, parsep=0pt, topsep=1pt, partopsep=0pt, label=--}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ---------- HEADER ----------
+% \begin{center}
+%   {\Large \textbf{Arunima Chowdhury}}\\[2pt]
+%   arunimac02@tamu.edu $|$ (765) 746-9899 $|$ linkedin.com/in/arunima-chowdhury
+% \end{center}
+% \vspace{-8pt}
+
+\begin{center}
+  {\Large \textbf{Arunima Chowdhury}}\\[2pt]
+  arunimac02@tamu.edu $|$ (765) 746-9899 $|$
+  \href{https://linkedin.com/in/arunima-chowdhury}{\faLinkedin\ Arunima Chowdhury}
+\end{center}
+\vspace{-8pt}
+
+% ---------- Research Interest ----------
+
+\section{Research Interests}
+Machine Learning for Optimization $|$ Efficient Learning Algorithms $|$ Reinforcement Learning $|$ Process Supervision and Reward Modeling
+
+% ---------- EDUCATION ----------
+\section{Education}
+
+\heading{Texas A\&M University}{College Station, TX}{M.S. Computer Science and Engineering $|$ GPA: 3.9}{Jan 2025 -- Present}
+\begin{itemize}
+  % Texas A&M
+    \item Relevant Coursework: Machine Learning and LLMs; Deep Reinforcement Learning; Data Mining and Analysis
+\end{itemize}
+
+\heading{Purdue University}{West Lafayette, IN}{B.S. Computer Science (AI \& ML concentration) $|$ GPA: 3.6}{Aug 2021 -- Dec 2024}
+\begin{itemize}
+% Purdue
+\item Relevant Coursework: Linear Algebra; Probability; Statistics; Multivariable Calculus; Machine Learning \& AI; Data Structures and Algorithms; Systems Programming
+  \item Honors \& Awards: Dean's List (2024); Undergraduate Research Conference Award (2023)
+\end{itemize}
+
+% ---------- RESEARCH PROJECTS ----------
+\section{Research Projects}
+
+\headingsimple{Multimodal Med-PRM}{\textit{Jun 2026 -- Present}}
+\begin{itemize}
+  \item Developing a multimodal process reward model for step-by-step verification of medical image reasoning
+  \item Integrating a vision encoder with a Llama-3.1-based process reward model and optimizing its training through fine-tuning on synthetic chain-of-thought supervision generated from medical VQA data
+\end{itemize}
+
+\headingsimple{Audio‑based Emotion Detection for Low‑Resource Language}{\textit{Aug 2025 -- Dec 2025}}
+\begin{itemize}
+  \item Experimented with Whisper and HuBERT by first fine‑tuning these large pre‑trained speech models on a small Bangla emotion dataset, then applying semi‑supervised adaptation using a large unlabeled Bangla audio corpus, which improved emotion‑detection accuracy in a low‑resource setting.
+\end{itemize}
+
+
+\headingsimple{Real-Time Multi-Person Motion Tracking System}{\textit{Jan 2023 -- Dec 2024}}
+\begin{itemize}
+  \item Conducted a comparative evaluation of human pose estimation methods, identifying YOLO-Pose as the optimal model for real-time tracking
+  \item Built a real-time multi-person 3D motion tracking system using YOLO-Pose and stereo depth sensing, enabling accurate 3D skeletal tracking for live theatre
+\end{itemize}
+
+
+
+% \headingsimple{Real-Time Multi-Person Motion Tracking System}{\textit{Jan 2023 -- Dec 2024}}
+% \begin{itemize}
+%   \item Evaluated and benchmarked pose estimation algorithms (YOLO vs. TensorFlow PoseNet) under experimental conditions (live vs. recorded streams), achieving \raisebox{0.2ex}{\texttildelow}3x faster detection with improved accuracy with 70\% higher keypoint accuracy
+%   \item Developed an ML real time 3D motion tracking web app for live theatre, enabling multi person tracking and interactive visualizations by streaming keypoints via WebSocket into a React and p5.js frontend
+%   \item Integrated ZED 2i depth sensing and optimized system performance with external cameras and an NVIDIA 4060 Ti GPU, ensuring accurate 3D motion data and responsive tracking in real-world settings
+% \end{itemize}
+
+% ---------- EXPERIENCE ----------
+\section{Experience}
+
+% \heading{Software Developer}{}{Merck -- Data Mine $|$ SciBERT, Streamlit, Neo4j, OpenAI, BM25}{Aug 2023 -- May 2024}
+% \begin{itemize}
+%   \item Designed and built a hybrid retrieval-augmented generation (RAG) pipeline combining BM25 keyword ranking with SciBERT semantic embeddings, indexing 10,000+ scientific documents for cross-document search
+%   \item Owned the retrieval subsystem within a 9-engineer team: ran code reviews, coordinated sprint scope across 3 sub-teams, and drove the design that unblocked downstream extraction work
+%   \item Built an entity/relationship extraction pipeline using GPT-3.5 and loaded results into a Neo4j knowledge graph, enabling context-aware querying across the full document set for research scientists
+% \end{itemize}
+
+
+\heading{Software Developer}{}{Merck -- Data Mine $|$ SciBERT, Streamlit, Neo4j, OpenAI, BM25}{Aug 2023 -- May 2024}
+\begin{itemize}
+  \item Designed a hybrid retrieval-augmented generation (RAG) pipeline combining BM25 lexical retrieval with SciBERT semantic embeddings, indexing thousands of scientific documents for cross-document search
+  \item Developed an entity and relationship extraction pipeline using GPT-3.5 and integrated extracted knowledge into a Neo4j graph database, enabling context-aware querying over scientific literature
+\end{itemize}
+
+
+
+% \heading{Software Developer}{}{Merck -- Data Mine $|$ Flask, MySQL, GraphQL, React, AWS-RDS}{Aug 2022 -- Dec 2022}
+% \begin{itemize}
+%   \item Built a full-stack Flask/React application with a GraphQL API to capture and store biometric signals (heart rate, sleep, stress) from Garmin wearables, replacing manual logging with a speech-recognition entry flow (\raisebox{0.2ex}{\texttildelow}30\% reduction in entry time)
+%   \item Designed and scaled a MySQL/AWS RDS pipeline to ingest large biometric record volumes, supporting reproducible analytics across concurrent research studies
+% \end{itemize}
+
+
+\heading{Software Developer}{}{Merck -- Data Mine $|$ Flask, MySQL, GraphQL, React, AWS-RDS}{Aug 2022 -- Dec 2022}
+\begin{itemize}
+  \item Developed a full-stack Flask/React application with a GraphQL API for collecting biometric signals (heart rate, sleep, stress) from Garmin wearables, reducing data entry time by $\sim$30\% through speech-based input
+  \item Designed a scalable MySQL/AWS RDS data pipeline for ingesting and managing large-scale biometric records, enabling reproducible analysis across research studies
+\end{itemize}
+
+
+
+% \heading{Data Analyst Intern}{}{Robi Axiata Ltd. $|$ Matplotlib, Tableau, Corporate Strategy}{May 2022 -- Aug 2022}
+% \begin{itemize}
+%   \item Automated 4 recurring KPI reporting pipelines (revenue, ARPU) in Python, saving \raisebox{0.2ex}{\texttildelow}5 hrs/week of manual analyst effort and eliminating recurring calculation errors
+%   \item Built forecasting models on 100,000+ customer records (\raisebox{0.2ex}{\texttildelow}12\% MAPE) and Tableau dashboards used directly in cross-unit performance reviews
+% \end{itemize}
+
+\heading{Data Analyst Intern}{}{Robi Axiata Ltd. $|$ Matplotlib, Tableau, Corporate Strategy}{May 2022 -- Aug 2022} 
+\begin{itemize} 
+\item Automated recurring revenue and customer analytics reports using Python, reducing $\sim$5 hours/week of manual analysis and improving reporting accuracy 
+\item Developed forecasting models on 100,000+ subscriber records ($\sim$12\% MAPE) and built Tableau dashboards to analyze customer trends and support strategic decision-making \end{itemize}
+
+% ---------- PROJECTS ----------
+% \section{Projects}
+
+% \headingsimple{Engineering Academy (EA) Block Scheduling}{\textit{Jan 2025 -- May 2025}}
+% \begin{itemize}
+%   \item Built a full-stack scheduling application (Ruby on Rails, PostgreSQL) that assigns students to conflict-free blocks under hard scheduling constraints; deployed the student/admin web interface on Heroku
+%   \item Devised data model and ETL for bulk CSV import/export with data quality checks, role based access, and Google OAuth authentication; validated with 100+ RSpec/Cucumber tests achieving \raisebox{0.2ex}{\texttildelow}90\% line coverage, ensuring reliability for the student and admin portal
+% \end{itemize}
+
+% \headingsimple{Offline Multilingual Dictionary App}{\textit{Jan 2022 -- May 2022}}
+% \begin{itemize}
+%   \item Built an offline-first dictionary application supporting 500+ terms across Portuguese, English, and Mebengokre (native Brazilian language), with local data sync via SQLite
+%   \item Implemented ranked full-text search with SQLite FTS5 and ran retrieval experiments across multilingual datasets, improving query efficiency by \raisebox{0.2ex}{\texttildelow}30\%
+% \end{itemize}
+
+% ---------- TECHNICAL SKILLS ----------
+\section{Technical Skills}
+\textbf{Languages:} Python, C/C++, Java, SQL\\
+\textbf{ML Frameworks:} PyTorch, TensorFlow, Hugging Face, Scikit-learn\\
+\textbf{Libraries \& Tools:} NumPy, Pandas, CUDA, Linux, Git, Docker
+
+\end{document}

@@ -1,0 +1,156 @@
+%-------------------------
+% Arunima Chowdhury Resume
+%-------------------------
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{microtype}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.55in}
+\addtolength{\textheight}{1.1in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1 \vspace{-1.5pt}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%---------- HEADING ----------
+\begin{center}
+  {\LARGE \textbf{Arunima Chowdhury}} \\[4pt]
+  \small
+  \href{mailto:arunimac02@tamu.edu}{arunimac02@tamu.edu} $|$
+  (765) 746-9899 $|$
+  \href{https://linkedin.com/in/arunima-chowdhury}{linkedin.com/in/arunima-chowdhury}
+\end{center}
+
+%---------- EDUCATION ----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Texas A\&M University}{College Station, TX}
+    {M.S. Computer Science and Engineering $|$\textnormal{ GPA: 3.89}}{Jan 2025 -- May 2027}
+    \vspace{1pt}
+    \resumeItemListStart
+      \resumeItem{Relevant Coursework: Software Engineering, Deep Learning, Network Security, Deep Reinforcement Learning, Deep Learning \& LLMs, Data Mining and Analysis}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Purdue University}{West Lafayette, IN}
+    {B.S. Computer Science, AI \& ML Concentration $|$\textnormal{ GPA: 3.6}}{Aug 2021 -- Dec 2024}
+    \vspace{1pt}
+    \resumeItemListStart
+      \resumeItem{Relevant Coursework: Machine Learning, Intro to AI, Analysis of Algorithms, Data Structures, Database Management}
+      \resumeItem{Honors: Dean's List (2024); Undergraduate Research Conference Award (2023)}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%---------- RESEARCH ----------
+\section{Research}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Multi-Teacher LLM Reasoning via Off-Policy Guidance (Thesis)}{Jan 2025 -- Present}
+    {Texas A\&M University $|$ PyTorch, Hugging Face, Qwen2.5-Math-1.5B}{College Station, TX}
+    \resumeItemListStart
+      \resumeItem{Extending the LUFFY framework for off-policy LLM reasoning guidance by developing a multi-teacher routing mechanism to dynamically select among teacher models during training}
+      \resumeItem{Training a student model (Qwen2.5-Math-1.5B) under multi-teacher supervision; benchmarking on AIME24/25, MATH500, and OlympiadBench}
+      \resumeItem{Investigating principled routing metrics to integrate with LUFFY's reward-weighted training objective}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {ML in Motion}{Jan 2023 -- Dec 2024}
+    {Purdue University $|$ TensorFlow, YOLO, p5.js, ZED 2i, NVIDIA 4060 Ti}{West Lafayette, IN}
+    \resumeItemListStart
+      \resumeItem{Designed and benchmarked deep learning-based pose estimation models (YOLO vs.\ TensorFlow PoseNet) on live and recorded sensor streams, achieving $\sim$3$\times$ faster inference with improved accuracy}
+      \resumeItem{Built a real-time multi-person tracking system fusing depth sensor data (ZED 2i) with ML-predicted keypoints; developed a low-latency WebSocket pipeline for continuous data streaming and visualization}
+      \resumeItem{Optimized model inference on GPU hardware (NVIDIA 4060 Ti) for reliable real-world deployment; validated system performance under dynamic, high-variability conditions}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%---------- EXPERIENCE ----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Software Developer}{Aug 2023 -- May 2024}
+    {Merck -- Purdue Data Mine $|$ SciBERT, Streamlit, Neo4j, OpenAI}{West Lafayette, IN}
+    \resumeItemListStart
+      \resumeItem{Led a 9-member team to design and deploy a retrieval-augmented generation (RAG) pipeline over 10K+ scientific documents, combining BM25 keyword ranking with SciBERT semantic embeddings for hybrid retrieval}
+      \resumeItem{Applied GPT-3.5 for entity and relationship extraction from ranked results; constructed a Neo4j knowledge graph enabling context-aware, cross-document querying for domain-specific engineering literature}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Software Developer}{Aug 2022 -- Dec 2022}
+    {Merck -- Purdue Data Mine $|$ Flask, MySQL, GraphQL, React, AWS}{West Lafayette, IN}
+    \resumeItemListStart
+      \resumeItem{Developed a Flask full-stack web app to collect and store biometric signals (heart rate, sleep, stress) from Garmin wearables with a speech recognition interface, reducing manual entry by $\sim$30\%}
+      \resumeItem{Engineered MySQL/AWS RDS pipelines for large-scale biometric records; designed GraphQL APIs and React dashboards for real-time tracking and analysis}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Data Analyst Intern}{May 2022 -- Aug 2022}
+    {Robi Axiata Ltd. $|$ Python, Tableau, Matplotlib}{Dhaka, Bangladesh}
+    \resumeItemListStart
+      \resumeItem{Automated 4 recurring KPI reports in Python (revenue, ARPU), saving $\sim$5 hrs/week; built Tableau dashboards supporting cross-unit performance reviews}
+      \resumeItem{Conducted forecasting on 100K+ customer records, improving prediction accuracy to $\sim$12\% MAPE}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%---------- TECHNICAL SKILLS ----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=1pt]
+  \small{
+    \item \textbf{ML \& AI:} PyTorch, Scikit-learn, Keras, TensorFlow, Hugging Face, NLP, LLM Fine-Tuning, RAG, Deep Learning
+    \item \textbf{Languages:} Python, Java, C/C++, SQL, R
+    \item \textbf{Software \& Tools:} React, Node.js, Figma, Tableau, Git, MongoDB, NoSQL, MySQL, Linux/Unix, Flask, Neo4j, AWS
+  }
+\end{itemize}
+
+\end{document}

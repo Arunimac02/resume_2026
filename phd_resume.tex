@@ -48,34 +48,35 @@
 % ---------- Research Interest ----------
 
 \section{Research Interest}
-Multi-step Reasoning in Large Language Models $|$ Reinforcement Learning for LLMs $|$ Self-Improving AI Agents
+Multimodal Reasoning and Verification in LLMs $|$ Reinforcement Learning for LLMs
 
 % ---------- EDUCATION ----------
 \section{Education}
 
 \heading{Texas A\&M University}{College Station, TX}{M.S. Computer Science and Engineering $|$ GPA: 3.9}{Jan 2025 -- Present}
 \begin{itemize}
-  \item Relevant Coursework: Software Engineering; Network Security; Deep Reinforcement Learning; Machine Learning and LLMs; Data Mining and Analysis
+  \item Relevant Coursework: Deep Learning; Deep Reinforcement Learning; Machine Learning; Special Topics: Deep Learning and LLMs; Analysis of Algorithms; Data Mining and Analysis; Data Visualization; Software Engineering
 \end{itemize}
 
 \heading{Purdue University}{West Lafayette, IN}{B.S. Computer Science (AI \& ML concentration) $|$ GPA: 3.6}{Aug 2021 -- Dec 2024}
 \begin{itemize}
-  \item Relevant Coursework: Object Oriented Programming; Data Structures and Algorithms; Systems Programming; Database Management; Machine Learning \& AI; Computer Architecture
+  \item Relevant Coursework: Data Mining and Machine Learning; Introduction to Artificial Intelligence; Generative AI in Education; Probability; Linear Algebra
   \item Honors \& Awards: Dean's List (2024); Undergraduate Research Conference Award (2023)
 \end{itemize}
 
 % ---------- RESEARCH PROJECTS ----------
 \section{Research Projects}
 
-\headingsimple{Multimodal Med-PRM}{\textit{Jun 2026 -- Present}}
+\headingsimple{Typed Process Reward Models for Medical Image Reasoning}{\textit{Jun 2026 -- Present}}
 \begin{itemize}
-  \item Developing a multimodal process reward model for step-by-step verification of medical image reasoning
-  \item Integrating a vision encoder with a Llama-3.1-based process reward model and fine-tuning it using synthetic chain-of-thought supervision generated from medical VQA data
+  \item Supervising medical image reasoning step by step, checking whether each step is grounded in the image, whether its visual claims are correct, and whether its clinical inferences hold
+  \item Building an automated pipeline that labels reasoning chains sampled from Qwen2.5-VL-7B; the trained model will be used for Best-of-N selection and as step-level rewards in GRPO to train models that look at the image and reason correctly
 \end{itemize}
 
 \headingsimple{Audio‑based Emotion Detection for Low‑Resource Language}{\textit{Aug 2025 -- Dec 2025}}
 \begin{itemize}
-  \item Experimented with Whisper and HuBERT by first fine‑tuning these large pre‑trained speech models on a small Bangla emotion dataset, then applying semi‑supervised adaptation using a large unlabeled Bangla audio corpus, which improved emotion‑detection accuracy in a low‑resource setting.
+  \item Studied how large pre-trained speech models can detect emotion in Bangla, a low-resource language where labeled emotional speech is scarce
+  \item Fine-tuned Whisper and HuBERT on a small labeled Bangla emotion dataset, then applied semi-supervised adaptation on a large unlabeled Bangla audio corpus, improving emotion-detection accuracy over supervised fine-tuning alone
 \end{itemize}
 
 

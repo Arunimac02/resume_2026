@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Linespread command allows you to change line spacing for the entire document
+\linespread{1.18}
+
+% Tweak page margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\Hrule}{\rule{\linewidth}{0.3mm}}
+
+% Project specific macros
+\newcommand{\graphite}{GRAPHITE\xspace}
+\newcommand{\wave}{WAVE\xspace}
+
+% School specific macros
+\newcommand{\schoolShort}{Stanford\xspace}
+\newcommand{\school}{Stanford\xspace}
+\newcommand{\schoolLong}{Stanford University\xspace}
+
+\newcommand{\profOne}{Prof. Matei Zaharia\xspace}
+\newcommand{\profTwo}{Prof. Christos Kozyrakis\xspace}
+\newcommand{\profThree}{Prof. Jure Leskovec\xspace}
+
+% Creates header for each page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\header\hskip\linepagesep\vfootline\thepage}
+\newskip\linepagesep \linepagesep 5pt\relax
+\def\vfootline{%
+    \begingroup
+    	\rule[-10pt]{0.75pt}{25pt}
+    \endgroup
+}
+\def\header{%
+	\begin{minipage}[]{120pt}
+		\hfill Swapnil Gandhi 		% Applicant Name
+    	\par \hfill 				% Formatting boilerplate
+    	CS, PhD, Fall 2022 			% Area, Program, Cycle, Year
+    \end{minipage}
+}
+\fancyhead[RE,LO]{Statement of Purpose | \schoolLong}
+\renewcommand\headrulewidth{0pt}
+
+\begin{document}
+
+%% Why do you wish to attend graduate school? What would you like to study? Keep it broad, details come-in later
+\textbf{intro:} The most significant challenge in trusting reasoning models is not their fallibility, but their fluency. Errors in reasoning present themselves with the same coherence and confidence as sound inferences. A chain of thought can be perfectly coherent, richly detailed, and entirely wrong, and no amount of careful reading reliably tells the two apart. As AI becomes deeply embedded in the decisions that shape our lives, I find myself returning to a persistent question: on what grounds can we entrust our judgment to systems capable of misleading us without our awareness, especially when those who depend on them lack the domain knowledge to tell the difference?
+
+Recent advances in reinforcement learning and inference-time computation have substantially improved the reasoning of large language models, and chain-of-thought reasoning promised something further: if a model shows its work, we should be able to check it. In practice, that promise remains largely unfulfilled. Reasoning is still judged mostly by its final answer, both when models are evaluated and when they are trained. A model that reaches the right answer through flawed reasoning is reinforced just as strongly as one that reasons soundly, so training can quietly select for reasoning that is persuasive rather than reliable, and the model never learns which step caused a failure. As models become agents, the fluency that misleads users begins to mislead the model itself: an agent may commit early to a plausible but incorrect assumption and spend every later step refining a solution built on it, with each step now an action that may not be reversible.
+
+Multimodal settings make the problem sharper still. Vision-language models often reason from learned language patterns rather than from the image itself, and this drift can worsen as reasoning grows longer. Meanwhile, the methods that do check intermediate steps judge them by how plausible the text looks, not by whether the evidence supports them. For instance, a model diagnosing a medical image may describe a lesion as spiculated when the scan shows no such feature, and still reach the correct diagnosis. Neither a text-only verifier nor a user without clinical training can catch the error, and a correct answer built on ungrounded reasoning is arguably more dangerous than a wrong one, because it earns trust it has not earned.
+
+To bridge these gaps, I aim to develop reasoning models whose steps are verifiable, grounded in evidence, and shaped by feedback that identifies where reasoning fails, without sacrificing the capabilities that make these models useful. My work focuses on two connected problems: step-level supervision that lets models locate and recover from their own errors, both in training and in long-horizon agentic decision-making, and evidence-grounded verification that ties each reasoning step to what the model actually observes, particularly in multimodal medical settings. This work will allow us to rely on reasoning models in settings where the people depending on them cannot check the reasoning themselves.
+
+
+
+%% Describe 2-3 past projects that might be relevant to your research interests. (10-12 lines per project)
+
+% PROJECT 1: med prm
+
+\textbf{Research Experience 1:} As a first step toward this aim, my master’s thesis with Prof. Ruihong Huang at Texas A\&M studies how to verify the reasoning of vision-language models on medical images. Reading a medical image involves looking at the right region, recognizing what it contains, and reasoning from it to a diagnosis, and current models fail at all three: they answer from language priors, misread lesions even when their final answers are correct, and draw flawed clinical inferences [cite]. These failures mirror the search, recognition, and decision errors long studied in radiology [cite]. Yet existing process reward models compress them into a single score per step, and medical verifiers such as Med-PRM check text alone [cite], so a low score reveals that a step failed but not why.
+
+I am therefore developing a typed process reward model that judges each step on two separate questions: are its visual claims correct, and does its clinical inference hold given those claims? To build supervision without clinician-written step labels, I parse sampled reasoning chains into visual claims and inferences, verify each claim against expert segmentation masks, and evaluate each inference against retrieved medical knowledge. When an inference rests on a refuted claim, I label it as dependent rather than as a second error, so a single misreading is not penalized twice. Because masks are unavailable at test time, the verifier instead receives the output of a segmentation model trained across held-out folds, so it cannot learn to trust that output blindly, and I test whether its visual judgments survive replacing the image with a blank one. I will use the trained model both to select among candidate reasoning chains and as a step-level reward in reinforcement learning, where the answer reward decides how good a response is and the verifier decides which steps earn credit or blame.
+
+% PROJECT 2: bangla 
+
+My interest in learning from imperfect supervision took shape earlier, in a project on speech emotion detection for Bangla, a low-resource language with little labeled data. I first fine-tuned large pretrained speech models, Whisper and HuBERT, on a small labeled emotion dataset, then applied semi-supervised adaptation using a large unlabeled Bangla audio corpus, improving accuracy by [X]. The project taught me that when labels are scarce, the quality of whatever supervision replaces them decides what a model learns: [a real observation, e.g., pseudo-labels the model was confidently wrong about tended to reinforce its own mistakes]. I carry that lesson into my thesis, where every step label is generated automatically and must be verified before it can be trusted.
+
+% PROJECT 3: Graphite - Distributed Temporal Graph Processing
+
+As an undergraduate at Purdue, I worked on two projects that shaped how I think about reliability. In a two-year research project, I built a real-time multi-person 3D motion tracking system for live theatre, combining YOLO-Pose with stereo depth sensing after a comparative evaluation of pose estimation methods [; this work received the Undergraduate Research Conference Award]. Because the system had to work during live performances, [a real lesson, e.g., how a model behaved under occlusion and changing stage lighting mattered more than its benchmark accuracy]. Through Purdue’s Data Mine program with Merck, I then moved to language models, building a hybrid retrieval-augmented generation pipeline that combined BM25 and SciBERT retrieval over thousands of scientific documents, along with a GPT-3.5 pipeline that organized extracted findings into a knowledge graph. That work gave me my first view of the problem my thesis now addresses: a fluent answer is useful only if it can be traced back to evidence.
+
+%% Non-research accomplishments (e.g. Grades, Academic Service, Work experience) (10-12 lines)
+
+% Grades
+
+% TA and Academic Service
+
+% Industry
+
+%% Why this school? List professors you would like to work with and why? (10-12 Lines)
+
+
+
+%% Summary (3-4 Lines)
+
+
+% Add some blank space between text and references
+\vspace{0.125in}
+
+% References
+
+% **NOTE**: There are better ways to manage citations in LaTeX, most notably using a bibTeX. I wanted to have greater control on how citations were spaced and formatted and therefore ended up hardcoding them here. Your mileage may wary!
+
+[1] \underline{Swapnil Gandhi}, Anand Padmanabha Iyer, ``P3: Distributed Deep Graph Learning at Scale'', In proceedings of the 15th USENIX Symposium on Operating Systems Design and Implementation
+(\textbf{OSDI 2021}), July 2021. \url{https://swapnilgandhi.com/papers/p3-osdi21.pdf}
+
+[2] \underline{Swapnil Gandhi}, Anand Padmanabha Iyer, ``SURGEON: Fast \& Efficient DNN Inference Using Practical Early-Exit Networks'' (\textbf{On-going Project})
+
+[3] \underline{Swapnil Gandhi}, Yogesh Simmhan, ``An Interval-centric Model for Distributed Computing over Temporal Graphs'', In proceedings of the 36th IEEE International Conference on Data Engineering
+(\textbf{ICDE 2020}), Dallas, Texas, April 2020. \url{https://swapnilgandhi.com/papers/icm-icde20.pdf}
+
+[4] \underline{Swapnil Gandhi}, ``Wave: A Substrate for Distributed Incremental Graph Processing on Commodity Clusters'', 2nd ACM Student Research Competition (\textbf{SRC}) at 27th Symposium on Operating Systems Principles (\textbf{SOSP 2019}), Ontario, Canada, Oct 2019. \url{https://swapnilgandhi.com/papers/wave-sosp19.pdf}
+
+\end{document}
+
+% That's All Folks.
+
+% Best of luck, you got this! :)

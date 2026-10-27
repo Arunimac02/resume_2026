@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:/Users/aruni/SoP-Template && zip -r C:/Users/aruni/Desktop/SoP-Template.zip . -x \".git/*\")"
+    ]
+  }
+}

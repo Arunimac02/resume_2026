@@ -80,15 +80,15 @@ Multimodal Reasoning and Verification in LLMs $|$ Reinforcement Learning for LLM
 \end{itemize}
 
 
-\headingsimple{Real-Time Multi-Person Motion Tracking System}{\textit{Jan 2023 -- Dec 2024}}
+\headingsimple{LLM-Grounded Feedback for Dance Motion Analysis}{\textit{Jan 2023 -- Dec 2024}}
 \begin{itemize}
-  \item Built an automated feedback system for modern dance that compares student performances against instructor references using 3D skeletal tracking and generates personalized corrective coaching through an LLM
-  \item Extracted 3D poses via YOLO-Pose and stereo depth, classified 19 movement categories with fine-tuned SkateFormer, and constrained Gemini with structured skeletal evidence and validation rules to produce grounded, hallucination-resistant feedback
+  \item Built an automated feedback system for modern dance that compares student performances against instructor references using 3D skeletal sequences, identifies movement deviations, and generates personalized corrective guidance using an LLM
+  \item Extracted 3D poses via YOLO-Pose and stereo depth, classified movements with a fine-tuned pretrained skeletal transformer, aligned student-instructor sequences using FastDTW to compute joint-level deviations, and used Gemini with the measured deviations to generate actionable corrective feedback
 \end{itemize}
 
 
 
-% \headingsimple{Real-Time Multi-Person Motion Tracking System}{\textit{Jan 2023 -- Dec 2024}}
+% \headingsimple{LLM-Grounded Feedback for Dance Motion Analysis}{\textit{Jan 2023 -- Dec 2024}}
 % \begin{itemize}
 %   \item Evaluated and benchmarked pose estimation algorithms (YOLO vs. TensorFlow PoseNet) under experimental conditions (live vs. recorded streams), achieving \raisebox{0.2ex}{\texttildelow}3x faster detection with improved accuracy with 70\% higher keypoint accuracy
 %   \item Developed an ML real time 3D motion tracking web app for live theatre, enabling multi person tracking and interactive visualizations by streaming keypoints via WebSocket into a React and p5.js frontend

@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Linespread command allows you to change line spacing for the entire document
+\linespread{1.18}
+
+% Tweak page margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\Hrule}{\rule{\linewidth}{0.3mm}}
+
+% Project specific macros
+\newcommand{\graphite}{GRAPHITE\xspace}
+\newcommand{\wave}{WAVE\xspace}
+
+% School specific macros
+\newcommand{\schoolShort}{Stanford\xspace}
+\newcommand{\school}{Stanford\xspace}
+\newcommand{\schoolLong}{\xspace}
+
+\newcommand{\profOne}{Prof. Matei Zaharia\xspace}
+\newcommand{\profTwo}{Prof. Christos Kozyrakis\xspace}
+\newcommand{\profThree}{Prof. Jure Leskovec\xspace}
+
+% Creates header for each page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\header\hskip\linepagesep\vfootline\thepage}
+\newskip\linepagesep \linepagesep 5pt\relax
+\def\vfootline{%
+    \begingroup
+    	\rule[-10pt]{0.75pt}{25pt}
+    \endgroup
+}
+\def\header{%
+	\begin{minipage}[]{120pt}
+		\hfill Arunima Chowdhury 		% Applicant Name
+    	\par \hfill 				% Formatting boilerplate
+    	CS, PhD, Fall 2027 			% Area, Program, Cycle, Year
+    \end{minipage}
+}
+\fancyhead[RE,LO]{Statement of Purpose | \schoolLong}
+\renewcommand\headrulewidth{0pt}
+
+\begin{document}
+
+%% Why do you wish to attend graduate school? What would you like to study? Keep it broad, details come-in later
+\textbf{Introduction:} The most significant challenge in trusting reasoning models is not their fallibility but their fluency. A flawed chain of thought arrives with the same coherence and confidence as a sound one, and its surface rarely reveals the difference. How can we rely on such systems when the people depending on them often lack the expertise to check them?
+
+CoT reasoning enabled the model's reasoning to be checked, yet reasoning is mostly judged by the final outcome. Since such training rewards flawed reasoning, it's difficult to verify where the model failed; which only compounds when the agent acts on their own mistakes. The stakes are higher in mutlimodal settings as the models often reason based on language prior than looking for evidence. A diagnostic model can cite a lesion absent from the scan and still reach the correct diagnosis.
+
+These challenges motivate my PhD research interests in reinforcement learning and reasoning methods that enable models to learn from their mistakes. I am particularly interested in three questions: how learning algorithms can assign credit to individual decisions across long reasoning sequences, how autonomous agents can adapt through feedback and interaction, and how multimodal models can reason consistently with the evidence available to them. My goal is to develop reasoning models and autonomous agents that can recognize and recover from errors, generalize beyond familiar tasks, and make more reliable decisions in settings where users cannot easily verify their reasoning.
+
+
+
+%% Describe 2-3 past projects that might be relevant to your research interests. (10-12 lines per project)
+
+% PROJECT 1: med prm
+
+\textbf{Research Experience:} My motivation towards my goal as I worked on my master's thesis with Prof. Ruihong Huang at Texas A\&M. I extensively studied how to verify the reasoning of the vision language models on medical images. For medical image analysis, it's crucial to locate the correct region, recognizing what it contains, and reasoning from it to a diagnosis. Current models struggle to successfully complete all three. Due to model bias, they tend to reason from language priors, misread lesions even when their final answers are correct, and draw flawed clinical inferences. These limitations mirror the search, recognition, and decision errors long studied in radiology. Yet existing process reward models compress them into a single score per step, and medical verifiers such as Med-PRM check text alone, so a low score reveals that a step failed but not why.
+
+Hence I am developing a typed process reward model that judges each step on two separate questions: are its visual claims correct, and does its clinical inference hold given those claims? To build supervision without clinician-written step labels, I parse sampled reasoning chains into visual claims and inferences, verify each claim against expert segmentation masks, and evaluate each inference against retrieved medical knowledge. When an inference rests on a refuted claim, I label it as dependent rather than as a second error, so a single misreading is not penalized twice. Because masks are unavailable at test time, the verifier instead receives the output of a segmentation model trained across held-out folds, so it cannot learn to trust that output blindly, and I test whether its visual judgments survive replacing the image with a blank one. I will use the trained model both to select among candidate reasoning chains and as a step-level reward in reinforcement learning, where the answer reward decides how good a response is and the verifier decides which steps earn credit or blame.
+
+% PROJECT 2: bangla 
+
+My interest in learning from imperfect supervision developed through a project on speech emotion recognition for Bangla, where labeled emotional speech is scarce. After fine-tuning Whisper and HuBERT on a small labeled dataset, I found that performance varied sharply across emotion classes, especially those with few training examples. To make use of a larger corpus of unlabeled Bangla speech, I implemented iterative pseudo-labeling, adding the models’ high-confidence predictions to later training rounds. Early experiments showed that confidence alone was an unreliable signal: confidently wrong labels reinforced existing class biases, particularly between acoustically similar emotions. Combining confidence filtering with class-balanced sample selection raised macro-F1 from 61.8\% to 68.4\%, with the largest gains in underrepresented classes. The project taught me that more data helps only when the supervision derived from it is reliable, and that a model trained on its own unchecked outputs can amplify its mistakes. That lesson carries directly into my thesis, where step labels are generated automatically and a flawed reward could teach a model to reinforce its own flawed reasoning.
+
+% PROJECT 3: Graphite - Distributed Temporal Graph Processing
+
+As an undergraduate at Purdue, I spent two years developing a real-time multi-person 3D motion tracking system for live theatre, which generated visuals that responded to dancers during performances; the work received the Best Research Talk Award in the interdisciplinary category at Purdue’s Undergraduate Research Conference. After finding that TensorFlow PoseNet was too slow and struggled with multiple people and rapid movement, I combined YOLO-Pose with stereo depth sensing to reconstruct dancers’ skeletons in three dimensions. Detection improved, but keeping tracking consistent across an entire performance remained difficult. That gap taught me that accurate individual predictions do not guarantee dependable behavior across a sequence of decisions.
+
+Through Purdue’s Data Mine collaboration with Merck, I then moved to language models, building a retrieval-augmented generation pipeline over thousands of scientific documents. Because semantic retrieval with SciBERT often returned results too broad for precise scientific queries, I combined it with BM25 keyword retrieval. I also built a GPT-3.5 pipeline that extracted entities and relationships into a Neo4j knowledge graph while preserving links to their original sources. The project showed me that even convincing model outputs are only as credible as the evidence they can be traced back to.
+
+%% Non-research accomplishments (e.g. Grades, Academic Service, Work experience) (10-12 lines)
+Alongside my research, my graduate coursework at Texas A\&M University has strengthened my foundation in machine learning and reinforcement learning. I have maintained a 3.9 GPA while taking courses in Deep Reinforcement Learning and Machine Learning and LLMs. In Deep Reinforcement Learning, a teammate and I investigated how reinforcement learning could optimize workforce allocation in a call center, where employees must balance serving incoming customers with completing back-office tasks. We formulated the problem as a sequential decision-making process, with an agent allocating each employee's time at 15-minute intervals throughout a simulated workday. To model the environment, we developed a discrete-event simulation incorporating stochastic customer arrivals, correlated service and patience times, and customer abandonment. We then trained a Deep Q-Network (DQN) using a reward function that penalized customer waiting times, abandonment, employee overload, and unfinished back-office work. Across 200 simulated days, the learned policy substantially reduced waiting times and abandonment compared with random assignment and distributed back-office responsibilities more evenly. However, it completed fewer back-office tasks, whose penalty was assessed only at the end of the day. This tradeoff raised an important question about how reward design and delayed feedback influence an agent's learned behavior, particularly when optimizing competing objectives over long decision sequences. The experience strengthened my interest in reinforcement learning, especially credit assignment and the challenges of learning effective policies from delayed rewards.
+
+Beyond research and coursework, I have developed teaching, mentoring, and leadership experience. As a teaching assistant for Purdue's Data Mine program in collaboration with Merck, I led a team of nine student developers, coordinating project milestones, assigning development tasks, reviewing code, and helping teammates troubleshoot technical challenges. I also served as a liaison between the student team and Merck, communicating project progress and ensuring that our implementation aligned with the project's objectives. At Texas A\&M, I have twice served as a grader for the Computer Engineering senior capstone and currently grade for Software Engineering, evaluating student projects against established requirements and assessment criteria. At Purdue, I was recognized on the Dean's List and served as Vice President of the Bangladesh Student Association, where I secured \$47,000 in funding from the Student Fee Advisory Board to support cultural events for the Bangladeshi community. My professional experience also includes a data analyst internship at Robi Axiata, where I developed forecasting models using more than 100,000 subscriber records and built dashboards to support business decision-making. These experiences have strengthened my ability to lead collaborative projects, mentor other students, and communicate technical ideas across academic and professional settings.
+
+% Grades
+
+% TA and Academic Service
+
+% Industry
+
+%% Why this school? List professors you would like to work with and why? (10-12 Lines)
+
+
+
+%% Summary (3-4 Lines)
+
+
+% Add some blank space between text and references
+\vspace{0.125in}
+
+% References
+
+% **NOTE**: There are better ways to manage citations in LaTeX, most notably using a bibTeX. I wanted to have greater control on how citations were spaced and formatted and therefore ended up hardcoding them here. Your mileage may wary!
+
+
+
+\end{document}
+
+% That's All Folks.
+
+% Best of luck, you got this! :)

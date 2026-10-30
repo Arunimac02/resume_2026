@@ -80,3 +80,30 @@ generate corrective feedback tied to those measurements, rather than
 relying on the model to identify movement errors on its own. The
 work received the Best Research Talk Award at Purdue's Undergraduate
 Research Conference.
+
+== NON-RESEARCH ACCOMPLISHMENTS ==
+
+Beyond research, I have sought opportunities to develop the technical
+judgment, communication, and leadership skills needed for
+collaborative academic work. At Purdue, I was recognized on the
+Dean's List for academic performance. During my master's, I spent
+four semesters evaluating student teams in project-based software
+engineering courses. Reviewing their designs, implementations, and
+individual contributions taught me to assess technical work
+critically, explain weaknesses constructively, and remain fair when
+contributions were uneven.
+
+I developed my leadership skills at Purdue's Data Mine program, where
+I led nine student developers in a collaboration with Merck.
+Coordinating milestones and communicating with industry collaborators
+taught me how to translate broad research objectives into concrete
+tasks while keeping a team aligned. My internship at Robi Axiata gave
+me experience applying machine learning to real-world problems, where
+I developed forecasting models using over 100,000 subscriber records,
+achieving approximately 12% MAPE. Beyond technical work, I served as
+Vice President of the Bangladesh Student Association, organizing
+cultural programs, fostering community engagement, and strengthening
+connections between Bangladeshi students and the broader campus
+community. Together, these experiences taught me how to balance
+independent judgment with teamwork, communicate across different
+backgrounds, and take responsibility for work that involves others.

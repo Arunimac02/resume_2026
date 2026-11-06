@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Linespread command allows you to change line spacing for the entire document
+\linespread{1.18}
+
+% Tweak page margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\Hrule}{\rule{\linewidth}{0.3mm}}
+
+% Project specific macros
+\newcommand{\graphite}{GRAPHITE\xspace}
+\newcommand{\wave}{WAVE\xspace}
+
+% School specific macros
+\newcommand{\schoolShort}{UIUC\xspace}
+\newcommand{\school}{UIUC\xspace}
+\newcommand{\schoolLong}{University of Illinois Urbana-Champaign\xspace}
+
+\newcommand{\profOne}{Prof. Hao Peng\xspace}
+\newcommand{\profTwo}{Prof. Heng Ji\xspace}
+\newcommand{\profThree}{Prof. Tal August\xspace}
+
+% Creates header for each page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\header\hskip\linepagesep\vfootline\thepage}
+\newskip\linepagesep \linepagesep 5pt\relax
+\def\vfootline{%
+    \begingroup
+    	\rule[-10pt]{0.75pt}{25pt}
+    \endgroup
+}
+\def\header{%
+	\begin{minipage}[]{120pt}
+		\hfill Arunima Chowdhury 		% Applicant Name
+    	\par \hfill 				% Formatting boilerplate
+    	CS, PhD, Fall 2027 			% Area, Program, Cycle, Year
+    \end{minipage}
+}
+\fancyhead[RE,LO]{Statement of Purpose | \schoolLong}
+\renewcommand\headrulewidth{0pt}
+
+\begin{document}
+
+%% Why do you wish to attend graduate school? What would you like to study? Keep it broad, details come-in later
+\textbf{Introduction:} My research interests center on developing reliable supervision for foundation models. A recent shift has shown how powerful it can be: instead of learning only from human-written examples, models can now be trained with rewards that check whether their answers are correct, and through this process they learn to reason step by step. As training continues, they even learn on their own to think longer before responding, which opens a second way to improve them: spending more computation at test time. Yet this approach works best where answers can be checked automatically, such as math and code. In many other settings, models must rely on learned reward models, which judge outputs less reliably and can be exploited during training. In my PhD, I hope to contribute to this area by studying how learned reward models can give more reliable, step-level feedback, both for training models and for selecting among their outputs at test time.
+
+
+
+%% Describe 2-3 past projects that might be relevant to your research interests. (10-12 lines per project)
+
+% PROJECT 1: med prm
+
+\textbf{Research Experience:} I first encountered this challenge during my master’s research on multimodal medical reasoning. While studying process reward models, I became interested in a key limitation: they can identify incorrect reasoning steps, but often provide little insight into what caused the error. For medical image analysis, a model must locate the correct region, recognize what it contains, and reason from it to a diagnosis. A model might misinterpret an image or draw an incorrect clinical conclusion from accurately identified visual evidence. Although both lead to incorrect reasoning, they represent different types of errors that require different forms of supervision.
+
+To address this, I am working with Prof. Ruihong Huang at Texas A\&M on a typed process reward model that judges each reasoning step on two separate axes: whether its visual claims are correct, and whether its clinical inference holds given those claims. To build supervision without manually labeling each reasoning step, I sample reasoning chains from Qwen2.5-VL-7B, parse them into visual claims and inferences, check visual claims against available expert annotations, and evaluate clinical inferences against retrieved medical knowledge. If an inference relies on a visual claim that turns out to be wrong, I label it as dependent rather than counting it as a separate error. To ensure the model is actually using the image, I test whether its visual judgments retain when the image is replaced with a blank one. I plan to use the trained model both for Best-of-N selection among candidate reasoning chains and as a step-level reward in GRPO to train models that reason from the image rather than from language priors.
+
+% PROJECT 2: bangla
+
+I encountered a related challenge in an earlier project on Bangla speech emotion recognition, where labeled emotional speech is scarce. After fine-tuning Whisper and HuBERT on a small labeled dataset, I found that performance varied sharply across emotion classes, especially those with few examples. To make use of a larger unlabeled corpus, I implemented iterative pseudo-labeling, where I added the models’ high-confidence predictions to subsequent training rounds. But confidence alone was unreliable: confidently wrong predictions reinforced existing class biases, particularly between acoustically similar emotions. To tackle this problem, I combined confidence filtering with class-balanced selection. This raised macro-F1 from 61.8\% to 68.4\%, with the largest gains in underrepresented classes. The experience taught me that adding more data is not enough if the supervision itself is unreliable. What matters is whether we can identify and control errors in the labels we learn from, a concern I now revisit when constructing step-level labels for reasoning.
+
+% PROJECT 3: Dance Motion Feedback System
+
+My undergraduate research at Purdue gave me an early appreciation for how much the quality of model-generated feedback depends on the evidence available to it. I spent two years building an automated feedback system for modern dance that compares student performances against instructor references and generates personalized corrective guidance. The project started with 3D motion tracking for live theatre, where I needed fast, reliable pose estimation for multiple dancers. YOLO-Pose with stereo depth sensing gave me that; roughly 3x faster and 70\% more accurate than TensorFlow PoseNet. I classified movements across 19 categories using a fine-tuned SkateFormer and aligned student and instructor performances using FastDTW to measure joint-level deviations. To turn these measurements into actionable coaching, I used Gemini as a feedback generator. I provided it with structured, joint-level movement deviations and prompted it to generate corrective feedback tied to those measurements, rather than relying on the model to identify movement errors on its own. The work received the Best Research Talk Award at Purdue’s Undergraduate Research Conference.
+
+%% Non-research accomplishments (e.g. Grades, Academic Service, Work experience) (10-12 lines)
+Beyond research, I have sought opportunities to develop the technical judgment, communication, and leadership skills needed for collaborative academic work. At Purdue, I was recognized on the Dean's List for academic performance. During my master's, I served as a senior grader evaluating student teams in project-based software engineering courses. Reviewing their designs, implementations, and individual contributions taught me to assess technical work critically, explain weaknesses constructively, and remain fair when contributions were uneven.
+
+I developed my leadership skills at Purdue's Data Mine program, where I led nine student developers in a collaboration with Merck. Coordinating milestones and communicating with industry collaborators taught me how to translate broad research objectives into concrete tasks while keeping a team aligned. My internship at Robi Axiata gave me experience applying machine learning to real-world problems, where I developed forecasting models using thousands of subscriber records, achieving approximately 12\% MAPE. Beyond technical work, I served as Vice President of the Bangladesh Student Association, organizing cultural programs, fostering community engagement, and strengthening connections between Bangladeshi students and the broader campus community. Together, these experiences taught me how to balance independent judgment with teamwork, communicate across different backgrounds, and take responsibility for work that involves others.
+
+%% Why this school? List professors you would like to work with and why? (10-12 Lines)
+
+UIUC's depth in language models, reasoning, and human-centered AI makes it an ideal environment for my research. I am especially drawn to Prof. Hao Peng, whose work on process reward models and reinforcement learning for LLMs is closely aligned with my interest in building reliable step-level supervision. His recent ThinkPRM work --- building data-efficient reward models that generate verification chains of thought using only 1\% of process labels --- addresses the same core problem I am working on. I am excited about exploring how verification-aware reward models like ThinkPRM can be extended to multimodal settings, where visual and inferential errors need to be distinguished.
+
+I am also eager to work with Prof. Heng Ji. Her BLENDER Lab's research on knowledge-enhanced vision-language models and multimodal reasoning complements my goal of building structured supervision for medical image reasoning. I would be interested in exploring how her work on multimodal knowledge extraction could strengthen the evidence signals that step-level reward models rely on.
+
+I am also interested in working with Prof. Tal August. His research on adapting language to different audiences and evaluating when model-generated explanations actually help users connects to a question that runs through my own work: when can we trust what a model tells us? His Paper Plain work on making medical research accessible and his finding that LLM-personalized responses often seem better to model judges but not to actual humans both speak to the gap between sounding right and being right --- a gap my thesis and dance feedback project both aim to close.
+
+
+%% Summary (3-4 Lines)
+
+These skills, combined with my research experience, have prepared me to take on the challenges of doctoral work. I want to pursue a PhD to go deeper into the questions my work has raised --- how to build supervision that models can reliably learn from, especially when correctness is hard to verify. Long term, I want to build a career in AI research, developing methods that make foundation models more dependable in the settings where they matter most.
+
+% TEMPLATE: Replace bracketed placeholders for each school.
+
+% After completing my PhD, I plan to [CAREER GOAL — e.g., pursue a career as a research scientist working on X / continue in academia]. My experience with [BRIEF CALLBACK to your work] has shown me that [CORE BELIEF about your research area]. [SCHOOL]'s mentorship and resources will enable me to [FORWARD-LOOKING STATEMENT].
+
+
+% Add some blank space between text and references
+\vspace{0.125in}
+
+% References
+
+% **NOTE**: There are better ways to manage citations in LaTeX, most notably using a bibTeX. I wanted to have greater control on how citations were spaced and formatted and therefore ended up hardcoding them here. Your mileage may wary!
+
+
+
+\end{document}
+
+% That's All Folks.
+
+% Best of luck, you got this! :)
